@@ -1,0 +1,48 @@
+<div class="app-layout">
+  <header class="app-header">
+    <div class="brand">
+      <h1>Company Portal</h1>
+    </div>
+    <div class="user-profile">
+      <div class="avatar">
+        <i class="pi pi-user"></i>
+      </div>
+      <span class="user-name">John Smith</span>
+      <i class="pi pi-chevron-down dropdown-icon"></i>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <aside class="app-sidebar">
+      <nav class="sidebar-nav">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item"
+        >
+          <i class="pi pi-home"></i>
+          <span>Home</span>
+        </a>
+        <a routerLink="/table" routerLinkActive="active" class="nav-item">
+          <i class="pi pi-table"></i>
+          <div class="nav-label">
+            <span>App One</span>
+            <small>(Table)</small>
+          </div>
+        </a>
+        <a routerLink="/data" routerLinkActive="active" class="nav-item">
+          <i class="pi pi-file"></i>
+          <div class="nav-label">
+            <span>App Two</span>
+            <small>(Data)</small>
+          </div>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="app-main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
