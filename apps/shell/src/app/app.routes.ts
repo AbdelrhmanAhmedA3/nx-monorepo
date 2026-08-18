@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { loadRemoteModule } from '@nx/angular/mf';
+import { loadRemote } from '@module-federation/enhanced/runtime';
 
 export const appRoutes: Route[] = [
   {
@@ -12,12 +12,16 @@ export const appRoutes: Route[] = [
   {
     path: 'data',
     loadChildren: () =>
-      loadRemoteModule('data', './Routes').then((m) => m.remoteRoutes),
+      loadRemote<typeof import('data/Routes')>('data/Routes').then(
+        (m) => m!.remoteRoutes
+      ),
   },
   {
     path: 'table',
     loadChildren: () =>
-      loadRemoteModule('table', './Routes').then((m) => m.remoteRoutes),
+      loadRemote<typeof import('table/Routes')>('table/Routes').then(
+        (m) => m!.remoteRoutes
+      ),
   },
 ];
 

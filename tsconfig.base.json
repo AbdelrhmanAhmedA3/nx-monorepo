@@ -17,12 +17,12 @@
     "paths": {
       "table/Routes": ["./apps/table/src/app/remote-entry/entry.routes.ts"],
       "data/Routes": ["./apps/data/src/app/remote-entry/entry.routes.ts"],
-      "stc-platform/config": [
-  "./libs/shared/config/src/index.ts"
-],
- "stc-platform/theme": [
-    "./libs/shared/theme/src/index.ts"
-  ]
+      "stc-platform/shared": [
+        "./libs/shared"
+      ],
+      "routes": [
+        "./apps/shell/src/app/app.routes.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,19 +1,22 @@
 import { provideHttpClient } from '@angular/common/http';
 import {
-    provideBrowserGlobalErrorListeners,
-    provideZonelessChangeDetection
+  provideBrowserGlobalErrorListeners
 } from '@angular/core';
 import { providePrimeNG } from 'primeng/config';
 
-import { AppTheme } from 'stc-platform/theme';
-// import { MessageService } from 'primeng/api';
-// import { DialogService } from 'primeng/dynamicdialog';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { appRoutes } from 'routes';
+import { AppTheme } from './../../../theme/src';
 
 export const sharedProviders = [
-  provideZonelessChangeDetection(),
   provideBrowserGlobalErrorListeners(),
   provideHttpClient(),
   providePrimeNG(AppTheme),
+      provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
 ];
-// DialogService,
-// MessageService,

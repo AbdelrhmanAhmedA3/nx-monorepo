@@ -1,8 +1,17 @@
-import { setRemoteDefinitions } from '@nx/angular/mf';
+import { init } from '@module-federation/enhanced/runtime';
 
-setRemoteDefinitions({
-  table: 'http://localhost:4201',
-  data: 'http://localhost:4202',
+init({
+  name: 'shell',
+  remotes: [
+    {
+      name: 'table',
+      entry: 'http://localhost:4201/mf-manifest.json',
+    },
+    {
+      name: 'data',
+      entry: 'http://localhost:4202/mf-manifest.json',
+    },
+  ],
 });
 
 import('./bootstrap').catch((err) => console.error(err));
