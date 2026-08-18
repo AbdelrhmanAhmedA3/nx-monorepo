@@ -1,47 +1,47 @@
-<div class="app-layout">
-  <header class="app-header">
+<div class="flex flex-col min-h-screen bg-slate-50 font-sans">
+  <header class="h-[60px] bg-[#003462] text-white flex items-center justify-between px-6 shadow">
     <div class="brand">
-      <h1>Company Portal</h1>
+      <h1 class="text-xl font-bold m-0">Company Portal</h1>
     </div>
-    <div class="user-profile">
-      <div class="avatar">
+    <div class="flex items-center gap-2 cursor-pointer">
+      <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-[0.9rem]">
         <i class="pi pi-user"></i>
       </div>
-      <span class="user-name">John Smith</span>
-      <i class="pi pi-chevron-down dropdown-icon"></i>
+      <span class="text-[0.9rem] font-medium">John Smith</span>
+      <i class="pi pi-chevron-down text-xs opacity-80"></i>
     </div>
   </header>
 
-  <div class="app-body">
-    <aside class="app-sidebar">
-      <nav class="sidebar-nav">
+  <div class="flex flex-1">
+    <aside class="w-[220px] bg-white border-r border-slate-200 py-4 px-3">
+      <nav class="flex flex-col gap-2">
         <a
           routerLink="/"
-          routerLinkActive="active"
+          routerLinkActive="!bg-[#e0edff] !text-[#003462] font-semibold"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-item"
+          class="flex items-center gap-3 py-3 px-4 rounded-lg text-slate-600 no-underline text-[0.9rem] font-medium transition-all duration-200 hover:bg-slate-100 hover:text-slate-900"
         >
           <i class="pi pi-home"></i>
           <span>Home</span>
         </a>
-        <a routerLink="/table" routerLinkActive="active" class="nav-item">
+        <a routerLink="/table" routerLinkActive="!bg-[#e0edff] !text-[#003462] font-semibold" class="flex items-center gap-3 py-3 px-4 rounded-lg text-slate-600 no-underline text-[0.9rem] font-medium transition-all duration-200 hover:bg-slate-100 hover:text-slate-900">
           <i class="pi pi-table"></i>
-          <div class="nav-label">
+          <div class="flex flex-col leading-tight">
             <span>App One</span>
-            <small>(Table)</small>
+            <small class="text-xs text-slate-500">(Table)</small>
           </div>
         </a>
-        <a routerLink="/data" routerLinkActive="active" class="nav-item">
+        <a routerLink="/data" routerLinkActive="!bg-[#e0edff] !text-[#003462] font-semibold" class="flex items-center gap-3 py-3 px-4 rounded-lg text-slate-600 no-underline text-[0.9rem] font-medium transition-all duration-200 hover:bg-slate-100 hover:text-slate-900">
           <i class="pi pi-file"></i>
-          <div class="nav-label">
+          <div class="flex flex-col leading-tight">
             <span>App Two</span>
-            <small>(Data)</small>
+            <small class="text-xs text-slate-500">(Data)</small>
           </div>
         </a>
       </nav>
     </aside>
 
-    <main class="app-main">
+    <main class="flex-1 bg-white">
       <router-outlet></router-outlet>
     </main>
   </div>

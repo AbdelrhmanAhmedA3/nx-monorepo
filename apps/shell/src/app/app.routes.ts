@@ -22,6 +22,7 @@ export const appRoutes: Route[] = [
       loadRemote<typeof import('table/Routes')>('table/Routes').then(
         (m) => m!.remoteRoutes
       ),
+      
   },
 ];
 

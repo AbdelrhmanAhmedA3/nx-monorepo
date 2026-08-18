@@ -21,7 +21,9 @@
             "input": "apps/table/public"
           }
         ],
-        "styles": ["apps/table/src/styles.css"],
+        "styles": [
+           "node_modules/primeicons/primeicons.css",
+          "apps/table/src/styles.css"],
         "customWebpackConfig": {
           "path": "apps/table/webpack.config.ts"
         }

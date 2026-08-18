@@ -21,7 +21,10 @@
             "input": "apps/data/public"
           }
         ],
-        "styles": ["apps/data/src/styles.css"],
+        "styles": [
+          "node_modules/primeicons/primeicons.css",
+          "apps/data/src/styles.css"
+        ],
         "customWebpackConfig": {
           "path": "apps/data/webpack.config.ts"
         }
