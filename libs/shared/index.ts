@@ -1,2 +1,3 @@
-export * from './config/src';
-export * from './theme/src';
+export * from './config/src/lib/app.providers';
+export * from './theme/src/lib/app-theme';
+

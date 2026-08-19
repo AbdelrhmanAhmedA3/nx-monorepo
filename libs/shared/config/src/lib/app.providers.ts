@@ -6,7 +6,7 @@ import { providePrimeNG } from 'primeng/config';
 
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { appRoutes } from 'routes';
-import { AppTheme } from '../../../theme/src';
+import { AppTheme } from '../../../theme/src/lib/app-theme';
 
 export const sharedProviders = [
   provideBrowserGlobalErrorListeners(),

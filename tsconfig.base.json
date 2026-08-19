@@ -19,7 +19,6 @@
       "data/Routes": ["./apps/data/src/app/remote-entry/entry.routes.ts"],
       "stc-platform/shared": ["./libs/shared"],
       "routes": ["./apps/shell/src/app/app.routes.ts"],
-      "@stc-platform/shell-table": ["./libs/shell-table/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
