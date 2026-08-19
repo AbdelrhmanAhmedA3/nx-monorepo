@@ -1,52 +1,65 @@
-import { Component, input } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Button } from 'primeng/button';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
+import { InputText } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { Record } from '../models/record.model';
+
 
 @Component({
   selector: 'app-records',
   standalone: true,
-  imports: [TableModule, Button],
+  imports: [TableModule, Button,IconField, InputIcon, InputText],
   template: `
     <div class="p-6 font-sans text-[#333]">
       <div class="flex justify-between items-center mb-5">
-        <h2 class="m-0 text-2xl font-semibold">App One - Records</h2>
-        <p-button icon="pi pi-plus" label="add" />
+        <h2 class="m-0 text-2xl font-semibold">Data Application - Records</h2>
+
+        <p-button
+          icon="pi pi-plus"
+          label="Add"
+        />
       </div>
 
       <div class="bg-white border border-[#e0e0e0] rounded-lg overflow-hidden">
-        <p-table 
-          [value]="records()" 
-          [paginator]="true" 
-          [rows]="5" 
-          [showCurrentPageReport]="true" 
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records"
+        <p-table
+        #dt2
+        [globalFilterFields]="['id','firstName','age']"
+          [value]="records()"
+          [paginator]="true"
+          [rows]="limit()"
+          [totalRecords]="records().length"
+          [showCurrentPageReport]="true"
+
         >
+           <ng-template #caption>
+                    <div class="flex">
+                        <p-iconfield iconPosition="left" >
+                            <p-inputicon>
+                                <i class="pi pi-search"></i>
+                            </p-inputicon>
+                            <input pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                        </p-iconfield>
+                    </div>
+                </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-left">ID</th>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-left">Name</th>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-left">Email</th>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-left">Department</th>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-left">Status</th>
-              <th class="bg-[#f8f9fa] text-[#5f6368] font-semibold text-sm p-4 border-b border-[#e0e0e0] text-center w-20">Actions</th>
+              <th pSortableColumn="id">ID <p-sortIcon field="id" /></th>
+              <th pSortableColumn="firstName">First Name <p-sortIcon field="firstName" /></th>
+              <th pSortableColumn="age">Age <p-sortIcon field="age" /></th>
+              <th>Actions</th>
             </tr>
           </ng-template>
+
           <ng-template pTemplate="body" let-record>
             <tr>
-              <td class="p-4 text-sm text-[#202124] border-b border-[#e0e0e0]">{{ record.id }}</td>
-              <td class="p-4 text-sm text-[#202124] border-b border-[#e0e0e0]">{{ record.name }}</td>
-              <td class="p-4 text-sm text-[#202124] border-b border-[#e0e0e0]">{{ record.email }}</td>
-              <td class="p-4 text-sm text-[#202124] border-b border-[#e0e0e0]">{{ record.department }}</td>
-              <td class="p-4 text-sm text-[#202124] border-b border-[#e0e0e0]">
-                <span class="px-2.5 py-1 rounded-full text-xs font-medium {{ record.status === 'Active' ? 'bg-[#e6f4ea] text-[#137333]' : 'bg-[#fce8e6] text-[#c5221f]' }}">
-                  {{ record.status }}
-                </span>
-              </td>
-              <td class="p-4 text-sm border-b border-[#e0e0e0] text-center">
-                <button class="bg-transparent border-none cursor-pointer text-[#5f6368] flex items-center justify-center w-8 h-8 rounded-full mx-auto hover:bg-[#f1f3f4]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                  </svg>
+              <td>{{ record.id }}</td>
+              <td>{{ record.firstName }}</td>
+              <td>{{ record.age }}</td>
+              <td>
+                <button>
+                  <i class="pi pi-ellipsis-v"></i>
                 </button>
               </td>
             </tr>
@@ -54,9 +67,42 @@ import { TableModule } from 'primeng/table';
         </p-table>
       </div>
     </div>
-  `
+  `,
 })
 export class RecordsComponent {
-  records = input<any[]>([]);
-  totalRecords = input<number>(0);
+  readonly limit = signal(5);
+  readonly records = signal<Record[]>([
+    {
+      id: 1,
+      firstName: 'John',
+      age: 30,
+    },
+    {
+      id: 2,
+      firstName: 'Sarah',
+      age: 28,
+    },
+    {
+      id: 3,
+      firstName: 'Omar',
+      age: 35,
+    },
+    {
+      id: 4,
+      firstName: 'Mona',
+      age: 26,
+    },
+    {
+      id: 5,
+      firstName: 'Ahmed',
+      age: 32,
+    },
+    {
+      id: 6,
+      firstName: 'Adam',
+      age: 29,
+    },
+  ]);
+
+
 }

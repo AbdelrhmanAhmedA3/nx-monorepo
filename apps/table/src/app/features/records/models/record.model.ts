@@ -1,7 +1,5 @@
-export interface RecordItem {
+export interface Record {
   id: number;
-  name: string;
-  email: string;
-  department: string;
-  status: 'Active' | 'Inactive';
+  firstName: string;
+  age: number;
 }
