@@ -13,7 +13,7 @@ import { Record } from '../models/record.model';
   imports: [TableModule, Button,IconField, InputIcon, InputText],
   template: `
     <div class="p-6 font-sans text-[#333]">
-      <div class="flex justify-between items-center mb-5">
+      <div class="flex flex-wrap gap-y-3 justify-between items-center mb-5">
         <h2 class="m-0 text-2xl font-semibold">Data Application - Records</h2>
 
         <p-button
@@ -26,6 +26,7 @@ import { Record } from '../models/record.model';
         <p-table
         #dt2
         [globalFilterFields]="['id','firstName','age']"
+        [scrollable]="true" scrollHeight="flex"
           [value]="records()"
           [paginator]="true"
           [rows]="limit()"
